@@ -1,6 +1,9 @@
 const ShoppingItem = () => {
     return ( 
-        <div className="card"></div>
+        <div className="card">
+
+            {/* an item och shoppinglist */}
+        </div>
      );
 }
  
