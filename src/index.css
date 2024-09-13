@@ -66,3 +66,36 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.post-it {
+  width: 200px; /* Justera bredd efter behov */
+  height: 200px; /* Justera höjd efter behov */
+  background-color: #ffeb3b; /* Typisk gul färg för en Post-it */
+  border: 1px solid #e0c400; /* En svag kant som matchar Post-it */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Ger ett lyft från bakgrunden */
+  transform: rotate(-3deg); /* Ger en liten lutning */
+  padding: 10px; /* Padding för innehåll */
+  font-family: 'Comic Sans MS', 'Marker Felt', cursive; /* Ger en handskriven känsla */
+  color: #333; /* Textfärg */
+  position: relative; /* För att kunna lägga till extra detaljer */
+  margin: 10px;
+}
+
+/* Lägg till ett "vik" i det övre högra hörnet */
+.post-it::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #ffeb3b 0%, #e0c400 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  margin: 10px;
+}
+
+.shoppingLists {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: 10px;
+}
