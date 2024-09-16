@@ -30,8 +30,14 @@ function App() {
     setSelectedList(updatedList);
   }
 
-  const updateItem = (item, selectedList) => {
-
+  const updateItem = (e, item, selectedList) => {
+    const newTitle = e.target.value;
+    const updatedItemList = selectedList.list.map(oldItem => 
+      oldItem.id === item.id 
+      ? {...oldItem, title : newTitle}
+      : oldItem)
+      const updatedList = {id: selectedList.id, list: updatedItemList};
+      setSelectedList(updatedList);
   }
 
   const checkItem = (item, selectedList) => {
@@ -44,6 +50,15 @@ function App() {
        
         setSelectedList(updatedList);
   }
+  const toggleEditMode = (item, selectedList) => {
+    const updatedItemList = selectedList.list.map(oldItem => 
+        oldItem.id === item.id 
+          ? {...oldItem, editMode: !oldItem.editMode} 
+          : oldItem
+        );
+    const updatedList = {id: selectedList.id, list: updatedItemList};
+    setSelectedList(updatedList);
+}
 
   const saveList = (selectedList) => {
     let updatedList = shoppingLists;
@@ -60,7 +75,15 @@ function App() {
       <div> <button onClick={() => {createNewList()}}>Add list</button>
     
     <Lists shoppingLists={shoppingLists} setSelectedList={setSelectedList}/></div>}
-    {selectedList && <div><ShoppingList selectedList= {selectedList} addNewItem={addNewItem} removeItem={removeItem} checkItem={checkItem} setSelectedList={setSelectedList} saveList={saveList} />
+    {selectedList && <div><ShoppingList 
+      selectedList= {selectedList} 
+      addNewItem={addNewItem} 
+      removeItem={removeItem} 
+      toggleEditMode={toggleEditMode} 
+      checkItem={checkItem} 
+      setSelectedList={setSelectedList} 
+      saveList={saveList} 
+      updateItem={updateItem}/>
     </div>}
     </>
   )
