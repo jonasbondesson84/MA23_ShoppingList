@@ -4,49 +4,55 @@ import deleteLogo from '../assets/delete.svg'
 import addLogo from '../assets/add_circle_outline.svg'
 import editLogo from '../assets/mode_edit.svg'
 import saveLogo from '../assets/check_circle.svg'
-const ShoppingList = (props) => {
+const ShoppingList = ({selectedList, addNewItem, removeItem, toggleEditMode, checkItem, setSelectedList, saveList, updateItem}) => {
 
-    const selectedList = props.selectedList || [];
+    const currentList = selectedList || [];
     const [title, setTitle] = useState("");
-    const [listTitle, setListTitle] = useState(selectedList.title);
-    const newId = selectedList.list.length > 0 ? selectedList.list[selectedList.list.length-1].id +1 : 0;
+    const [listTitle, setListTitle] = useState(currentList.title);
+    const newId = currentList.list.length > 0 ? currentList.list[currentList.list.length-1].id +1 : 0;
     const [editMode, setEditMode] = useState(false);
     const newItem = (title, newId) => {
-        return {title: title, done: false, id: newId};
+        return {title: title, done: false, id: newId, editMode: false};
     }
+
+    
     
     return ( 
         <div className="shoppinglist">
             
             <div className="post-it" id="long-list">
                     <input type="text" value={listTitle} id="shopping-title" onChange={e => {setListTitle(e.target.value)}}/>
-                    {selectedList.list.map(item => (
+                    {currentList.list.map(item => (
                     <div key={item.id} className="item">
                         
                         <input type="checkbox" name="" id="checkbox" checked={item.done} onChange={() => {
-                            props.checkItem(item, selectedList);
+                            checkItem(item, currentList);
                         }}/>
-                        <p><input type="" className="item-title" value={item.title} readOnly={!editMode} id="shopping-item" onChange={e => {setTitle(e.target.value)}}/>
-                        {!editMode &&
+                        <p>
+                        
+                        <input type="" className="item-title" value={item.title} readOnly={!item.editMode} id="shopping-item" onChange={e => {updateItem(e, item, currentList)}}/>
+                        {!item.editMode &&
                         <img src={editLogo} alt="" onClick={() => {
-                            setEditMode(true);
+                            toggleEditMode(item, currentList);
                         }}/>
                         
                         }
-                        {editMode && <img src={saveLogo} onClick={() => {
-                            setEditMode(false);
+                        {item.editMode && <img src={saveLogo} onClick={() => {
+                            toggleEditMode(item,currentList);
                         }}/>}
-                        {!editMode && <img src={deleteLogo} alt="" id="delete-image" onClick={() => {
-                            props.removeItem(item.id, selectedList);
+                        {!item.editMode && <img src={deleteLogo} alt="" id="delete-image" onClick={() => {
+                            removeItem(item.id, currentList);
                         }}/>}
                         </p>
                     </div>
-                ))}
+                ))
+                    
+                }
                 <div className="add">
                 {/* <p>Add title</p> */}
                 <input type="text" id="add-field" onInput={e=> setTitle(e.target.value)}/>
                 <img src={addLogo} id="add-button" alt="" onClick={() => {
-                    props.addNewItem(newItem(title, newId), selectedList);
+                    addNewItem(newItem(title, newId), currentList);
                 }}/>
                 {/* <button onClick={() => {
                     props.addNewItem(newItem(title, newId), selectedList);
@@ -55,10 +61,10 @@ const ShoppingList = (props) => {
             </div>
             
             <button onClick={() => {
-                selectedList.title = listTitle;
-                console.log(selectedList.title);
-                props.saveList(selectedList);
-         props.setSelectedList(null);
+                currentList.title = listTitle;
+                console.log(currentList.title);
+                saveList(currentList);
+         setSelectedList(null);
       }}>Back</button>
         </div>
      );
