@@ -6,7 +6,7 @@ const Lists = (props) => {
     
     <div className="shoppingLists">{props.shoppingLists.map((list) => (
         <div key={list.id} className="post-it" onClick={() => {props.setSelectedList(list);}}>
-            {list.id}
+            {list.title}
         </div>
         ))}
     </div>

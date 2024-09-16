@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,6 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Kalam', 'Marker Felt', cursive;
 }
 
 h1 {
@@ -75,7 +79,7 @@ button:focus-visible {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Ger ett lyft från bakgrunden */
   transform: rotate(-3deg); /* Ger en liten lutning */
   padding: 10px; /* Padding för innehåll */
-  font-family: 'Comic Sans MS', 'Marker Felt', cursive; /* Ger en handskriven känsla */
+  /* font-family: 'Comic Sans MS', 'Marker Felt', cursive; Ger en handskriven känsla */
   color: #333; /* Textfärg */
   position: relative; /* För att kunna lägga till extra detaljer */
   margin: 10px;
@@ -93,9 +97,62 @@ button:focus-visible {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
   margin: 10px;
 }
+.post-it#long-list {
+  min-height: 400px;
+  width: 400px;
+  height: auto;
+}
 
 .shoppingLists {
   display: grid;
   grid-template-columns: auto auto auto;
   margin: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+#shopping-title {
+  min-width: 200px;
+  font-size: large;
+  background-color: #c1b22c;
+  box-sizing: border-box;
+  border: none;
+  margin-top: 12px;
+  font-family: 'Kalam', 'Marker Felt', cursive;
+}
+
+#shopping-item {
+  
+  min-width: 200px;
+  font-size: medium;
+  background-color: #ffeb3b;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  color: #1a1a1a;
+  font-family: 'Kalam', 'Marker Felt', cursive;
+  margin-left: 10px;
+  height: 32px;
+  margin:10px;
+}
+/* 
+#delete-image {
+  width: 32px;
+  height: 32px;
+  /* margin-left: 5px; */
+  /* border: 1px solid black; */
+  /* align-items: center;
+
+} */ 
+#add-field {
+  font-family: 'Kalam', 'Marker Felt', cursive;
+}
+
+#add-button {
+  margin-left: 10px;
 }
