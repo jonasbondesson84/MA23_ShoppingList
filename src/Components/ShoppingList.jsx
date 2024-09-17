@@ -10,7 +10,8 @@ const ShoppingList = ({selectedList, addNewItem, removeItem, toggleEditMode, che
     const [title, setTitle] = useState("");
     const [listTitle, setListTitle] = useState(currentList.title);
     const newId = currentList.list.length > 0 ? currentList.list[currentList.list.length-1].id +1 : 0;
-    const [editMode, setEditMode] = useState(false);
+    
+    
     const newItem = (title, newId) => {
         return {title: title, done: false, id: newId, editMode: false};
     }
@@ -30,16 +31,16 @@ const ShoppingList = ({selectedList, addNewItem, removeItem, toggleEditMode, che
                         }}/>
                         <p>
                         
-                        <input type="" className="item-title" value={item.title} readOnly={!item.editMode} id="shopping-item" onChange={e => {updateItem(e, item, currentList)}}/>
-                        {!item.editMode &&
-                        <img src={editLogo} alt="" onClick={() => {
+                        <input type="" className="item-title" id={item.done ? 'done' : null} value={item.title} readOnly={!item.editMode} onChange={e => {updateItem(e, item, currentList)}}/>
+                        {!item.done &&
+                        <img src={!item.editMode ? editLogo : saveLogo} alt="" onClick={() => {
                             toggleEditMode(item, currentList);
                         }}/>
                         
                         }
-                        {item.editMode && <img src={saveLogo} onClick={() => {
+                        {/* {item.editMode && <img src={saveLogo} onClick={() => {
                             toggleEditMode(item,currentList);
-                        }}/>}
+                        }}/>} */}
                         {!item.editMode && <img src={deleteLogo} alt="" id="delete-image" onClick={() => {
                             removeItem(item.id, currentList);
                         }}/>}

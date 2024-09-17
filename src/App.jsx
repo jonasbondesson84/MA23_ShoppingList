@@ -13,14 +13,14 @@ function App() {
   const [selectedList, setSelectedList] = useState(null)
 
   const createNewList = () => {
-    let newList = {id: newID, title: "My list", list: []};
-    let tempList = [...shoppingLists, newList];
+    const newList = {id: newID, title: "My list", list: []};
+    const tempList = [...shoppingLists, newList];
     setShoppingLists(tempList);
   }
 
   const addNewItem = (item, selectedList) => {
-    let updatedList = [...selectedList.list, item];
-    let tempList = {id: selectedList.id, list: updatedList};
+    const updatedList = [...selectedList.list, item];
+    const tempList = {id: selectedList.id, list: updatedList};
     setSelectedList(tempList);
   }
 
